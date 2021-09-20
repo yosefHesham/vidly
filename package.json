@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "^4.17.1",
+    "fawn": "^2.1.5",
     "joi": "^17.4.2",
     "joi-objectid": "^4.0.2",
     "mongoose": "^6.0.6",
