@@ -5,6 +5,7 @@ const genreRouter = require("./routes/genre");
 const customerRouter = require("./routes/customer");
 const movieRouter = require("./routes/movies");
 const rentalRouter = require("./routes/rental");
+const userRouter = require("./routes/user");
 const Fawn = require("fawn/lib/fawn");
 
 const app = express();
@@ -19,6 +20,7 @@ app.use("/api/genre", genreRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/movies", movieRouter);
 app.use("/api/rentals", rentalRouter);
+app.use("/api/users", userRouter);
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));

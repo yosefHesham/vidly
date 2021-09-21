@@ -49,4 +49,13 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const rentals = await Rental.find().sort("-dateOut");
+    res.send(rentals);
+  } catch (ex) {
+    res.send(ex.message);
+  }
+});
+
 module.exports = router;
