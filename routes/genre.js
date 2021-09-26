@@ -1,19 +1,27 @@
 const express = require("express");
 const { validateGenre, Genre } = require("../models/genre_model");
 const router = express.Router();
+const auth = require("../middleware/auth_mid");
+const admin = require("../middleware/admin");
+const asyncMiddleWare = require("../middleware/async");
 
 async function getGenres() {
   const genres = await Genre.find();
   return genres;
 }
-router.get("/", async (req, res) => {
-  const genres = await getGenres();
-  if (!genres || genres.length == 0) {
-    res.status(400).send("No Genres found");
-    return;
-  }
-  res.status(200).send(genres);
-});
+router.get(
+  "/",
+  auth,
+  asyncMiddleWare(async (req, res) => {
+    throw new Error("something failed");
+    const genres = await getGenres();
+    if (!genres || genres.length == 0) {
+      res.status(400).send("No Genres found");
+      return;
+    }
+    res.status(200).send(genres);
+  })
+);
 
 router.get("/:id", async (req, res) => {
   const genre = await Genre.findById(req.params.id);
@@ -39,7 +47,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", [auth, admin], async (req, res) => {
   const genre = await Genre.findById(req.params.id);
   if (!genre) {
     res.status(404).send("Not found");
