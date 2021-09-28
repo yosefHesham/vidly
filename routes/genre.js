@@ -13,7 +13,6 @@ router.get(
   "/",
   auth,
   asyncMiddleWare(async (req, res) => {
-    throw new Error("something failed");
     const genres = await getGenres();
     if (!genres || genres.length == 0) {
       res.status(400).send("No Genres found");

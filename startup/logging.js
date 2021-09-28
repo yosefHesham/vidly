@@ -4,9 +4,10 @@ require("express-async-errors");
 
 module.exports = function () {
   winston.add(new winston.transports.File({ filename: "logfile.log" }));
-  // winston.add(
-  //   new winston.transports.MongoDB({ db: "mongodb://localhost/vidly" })
-  // );
+  winston.exceptions.handle(
+    new winston.transports.Console({ colorize: true, prettyPrint: true }),
+    new winston.transports.File({ filename: "uncaughtExceptions" })
+  );
 
   process.on("uncaughtException", (ex) => {
     winston.error(ex.message, ex);
