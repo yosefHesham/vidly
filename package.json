@@ -1,6 +1,6 @@
 {
-  "scripts":{
-    "test": "jest --watchAll"
+  "scripts": {
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -19,6 +19,7 @@
     "winston-mongodb": "^3.0.0"
   },
   "devDependencies": {
-    "jest": "^27.2.3"
+    "jest": "^27.2.3",
+    "supertest": "^6.1.6"
   }
 }
