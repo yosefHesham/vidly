@@ -5,6 +5,7 @@ const rentalRouter = require("../routes/rental");
 const userRouter = require("../routes/user");
 const authRouter = require("../routes/auth");
 const handleError = require("../middleware/error");
+const returnsRouter = require("../routes/returns");
 const express = require("express");
 
 module.exports = function (app) {
@@ -15,5 +16,7 @@ module.exports = function (app) {
   app.use("/api/rentals", rentalRouter);
   app.use("/api/users", userRouter);
   app.use("/api/auth", authRouter);
+  app.use("/api/returns", returnsRouter);
+
   app.use(handleError);
 };

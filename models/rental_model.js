@@ -11,7 +11,7 @@ const rentalSchema = new mongoose.Schema({
       },
       isGold: {
         type: Boolean,
-        required: true,
+        default: false,
       },
       phone: {
         type: String,
@@ -51,6 +51,7 @@ const rentalSchema = new mongoose.Schema({
   rentalFee: {
     type: Number,
     min: 0,
+    default: 0,
   },
 });
 

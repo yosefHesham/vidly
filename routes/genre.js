@@ -11,17 +11,14 @@ async function getGenres() {
   const genres = await Genre.find();
   return genres;
 }
-router.get(
-  "/",
-  asyncMiddleWare(async (req, res) => {
-    const genres = await getGenres();
-    if (!genres || genres.length == 0) {
-      res.status(404).send("No Genres found");
-      return;
-    }
-    res.status(200).send(genres);
-  })
-);
+router.get("/", async (req, res) => {
+  const genres = await getGenres();
+  if (!genres || genres.length == 0) {
+    res.status(404).send("No Genres found");
+    return;
+  }
+  res.status(200).send(genres);
+});
 
 router.get("/:id", validateObjectId, async (req, res) => {
   const genre = await Genre.findById(req.params.id);
